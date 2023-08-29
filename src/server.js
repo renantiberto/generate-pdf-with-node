@@ -28,9 +28,17 @@ const passengers = [
 ]
 
 app.get('/pdf', async(request, response) => {
-  const browser = await puppeteer.launch({ 
-    headless: "new"
+  const browser = await puppeteer.launch({
+    headless: "new",
+    ignoreDefaultArgs: [
+      '--disable-extensions'
+    ],
+    args: [
+      '--no-sandbox', 
+      '--disable-setuid-sandbox'
+    ]
   });
+  
   const page = await browser.newPage();
 
   await page.goto('http://localhost:3000/', {
@@ -44,7 +52,7 @@ app.get('/pdf', async(request, response) => {
     margin: {
       top: '20px',
       right: '40px',
-      bottom: '20pc',
+      bottom: '20px',
       left: '20px'
     }
   });
