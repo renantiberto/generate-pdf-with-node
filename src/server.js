@@ -1,7 +1,7 @@
 const express = require('express');
 const ejs = require('ejs');
 const path = require('path');
-const pdf = require('html-pdf');
+const puppeteer = require('puppeteer');
 const app = express();
 
 const passengers = [
@@ -27,6 +27,36 @@ const passengers = [
   },
 ]
 
+app.get('/pdf', async(request, response) => {
+  const browser = await puppeteer.launch({ 
+    headless: "new"
+  });
+  const page = await browser.newPage();
+
+  await page.goto('http://localhost:3000/', {
+    waitUntil: 'networkidle0'
+  });
+
+  // Configurar/Gerar o PDF
+  const pdf = await page.pdf({
+    printBackground: true,
+    format: 'LETTER',
+    margin: {
+      top: '20px',
+      right: '40px',
+      bottom: '20pc',
+      left: '20px'
+    }
+  });
+
+  // Fechar o browser
+  await browser.close();
+
+  response.contentType('application/pdf');
+
+  return response.send(pdf);
+});
+
 app.get('/', (request, response) => {
   const filePath = path.join(__dirname, "print.ejs");
   
@@ -35,27 +65,8 @@ app.get('/', (request, response) => {
       return response.send("Erro no caminho do arquivo.");
     }
 
-    // Configurações da página
-    const options = {
-      height: "11.25in",
-      width: "8.5in",
-      header: {
-        height: "20mm"
-      },
-      footer: {
-        height: "20mm",
-      }
-    }
-
-    // Gerar o PDF
-    pdf.create(html, options).toFile("report.pdf", (err, data) => {
-      if (err) {
-        return response.send("Erro ao gerar o PDF.");
-      }
-      // Enviar para o navegador
-      //return response.send("Arquivo gerado com sucesso!");
-      return response.send(html);
-    });
+    // Enviar para o navegador
+    return response.send(html);
   })
 });
 

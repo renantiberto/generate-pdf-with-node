@@ -21,7 +21,7 @@
     * [x] Primeiro entendimento de callback
 * [x] Criar uma lista de dados para criar o relatório
 * [x] Criar o HTML
-* [] Mostrar na rota
+* [x] Mostrar na rota
 * [x] Enviar dados para o HTML
 * [x] Segundo entendimento sobre callbacks
 * [x] Utilizar o HTML-PDF e configurar as opções
@@ -30,18 +30,18 @@
 
 # Bônus
 
-* [] Melhorar o estilo do PDF
-* [] Utilizar o `puppeteer`
-* [] Criar uma nova rota para exportação
-* [] Iniciar o `puppeteer` (headless)
-* [] Iniciar a página
-* [] Ir para a URL (aguardar toda página ser carregada)
-* [] Configurar e gerar o PDF
-* [] Fechar o browser
-* [] Exportar configurar o tipo de conteúdo da rota como `application`
-* [] Exportar o PDF
+* [x] Melhorar o estilo do PDF
+* [x] Utilizar o `puppeteer`
+* [x] Criar uma nova rota para exportação
+* [x] Iniciar o `puppeteer` (headless)
+* [x] Iniciar a página
+* [x] Ir para a URL (aguardar toda página ser carregada)
+* [x] Configurar e gerar o PDF
+* [x] Fechar o browser
+* [x] Configurar o tipo de conteúdo da rota como `application/pdf`
+* [x] Exportar o PDF
 
 # Próximos passos
 
-* [] Revisar o código e lembrar o que cada trecho faz
-* [] Novas ideias de exportação de PDF baseado no mesmo modelo
+* [x] Revisar o código e lembrar o que cada trecho faz
+* [x] Novas ideias de exportação de PDF baseado no mesmo modelo
